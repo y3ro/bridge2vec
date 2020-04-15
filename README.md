@@ -10,7 +10,7 @@ You will also need the [utf8proc](https://juliastrings.github.io/utf8proc/) libr
 ## Building bridge2vec
 
 ```
-$ git clone 
+$ git clone https://github.com/yeraidm/bridge2vec.git
 $ cd bridge2vec
 $ make
 ```
