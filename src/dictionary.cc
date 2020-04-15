@@ -564,12 +564,15 @@ void Dictionary::readFromFile(std::istream& in) {
   int64_t minThreshold = 1;
   while (readWord(in, oword)) {
 	    add(oword);
-	      std::cerr << "\33[2K\rRead " << oword << " " << ntokens_  / 1000000 << "M words" << std::flush;
+	    if (ntokens_ % 1000000 == 0 && args_->verbose > 1) {
+	      std::cerr << "\rRead " << ntokens_  / 1000000 << "M words" << std::flush;
+	    }
 	    if (size_ > 0.75 * MAX_VOCAB_SIZE) {
 	      minThreshold++;
 	      threshold(minThreshold, minThreshold);
 	    }
   }
+  std::cerr << std::endl;
 
   int64_t static_size = size_; 
   std::vector<std::string> pivots_ortho;
@@ -579,26 +582,26 @@ void Dictionary::readFromFile(std::istream& in) {
   
     pivots_ortho.insert(pivots_ortho.end(), words.begin(), words.end());    
   }
-  std::cerr << std::endl << "Pivots obtained: " << pivots_ortho.size() << std::endl;
 
     minThreshold = 1;
+    int pprog = 0;
     for (int i = 0; i < pivots_ortho.size(); i++) {
-	      			std::cerr << "\rPivots: " << (i/(float)pivots_ortho.size())*100 << std::flush;
-            			add(pivots_ortho[i]);
+	    pprog = round((i/(float)pivots_ortho.size()) * 100);
+	    if (pprog % 10 == 0 && args_->verbose > 1) {
+	    	std::cerr << "\rBridges: " << pprog << "%" << std::flush;
+	    }
+            add(pivots_ortho[i]);
 	    if (size_ > 0.75 * MAX_VOCAB_SIZE) {
 	      minThreshold++;
 	      threshold(minThreshold, minThreshold);
 	    }
   
     }
+    std::cerr << std::endl;
 
-  std::cerr << "Words" << std::endl;
   threshold(args_->minCount, args_->minCountLabel);
-  std::cerr << "Threshold" << std::endl;
   initTableDiscard();
-  std::cerr << "Table" << std::endl;
   initNgrams();
-  std::cerr << "Ngrams" << std::endl;
   if (args_->verbose > 0) {
     std::cerr << "\rRead " << ntokens_  / 1000000 << "M words" << std::endl;
     std::cerr << "Number of words:  " << nwords_ << std::endl;
