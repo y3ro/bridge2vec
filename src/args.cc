@@ -48,6 +48,9 @@ Args::Args() {
   phon_dict = "";
   palt = 5;
   pred = 0.3;
+
+  bridgep = 0.5;
+  bridgew = 0.1;	
 }
 
 std::string Args::lossToString(loss_name ln) const {
@@ -113,6 +116,10 @@ void Args::parseArgs(const std::vector<std::string>& args) {
       //  palt = std::atoi(args.at(ai + 1));
       //} else if (args[ai] == "-pred") {
       //  pred = std::atof(args.at(ai + 1));
+      } else if (args[ai] == "-bridgep") {
+        bridgep = std::stof(args.at(ai + 1));
+      } else if (args[ai] == "-bridgew") {
+        bridgew = std::stof(args.at(ai + 1));
       } else if (args[ai] == "-output") {
         output = std::string(args.at(ai + 1));
       } else if (args[ai] == "-lr") {
@@ -240,7 +247,9 @@ void Args::printTrainingHelp() {
     << "  -loss               loss function {ns, hs, softmax} [" << lossToString(loss) << "]\n"
     << "  -thread             number of threads [" << thread << "]\n"
     << "  -pretrainedVectors  pretrained word vectors for supervised learning ["<< pretrainedVectors <<"]\n"
-    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n";
+    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n"
+    << "  -bridgep            probability of using bridge words for each word in the training set [" << bridgep << "]\n"
+    << "  -bridgew            weight of bridge words [" << bridgew << "]\n";
 }
 
 void Args::printQuantizationHelp() {

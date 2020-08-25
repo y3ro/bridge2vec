@@ -368,7 +368,7 @@ void FastText::skipgram(Model& model, real lr,
   double length_factor;
   for (int32_t w = 0; w < line.size(); w++) {
     int32_t boundary = uniform(model.rng);
-    std::uniform_int_distribution<int32_t> bdist_ortho(1, 2);
+    std::uniform_real_distribution<double> bdist_ortho(0, 1);
     const std::vector<int32_t>& ngrams = dict_->getSubwords(line[w]); 
     std::vector<int32_t> sw = dict_->getSimilar(line[w], args_->palt); 
     std::vector<std::vector<int32_t>> sngramss;
@@ -381,9 +381,9 @@ void FastText::skipgram(Model& model, real lr,
     for (int32_t c = -boundary; c <= boundary; c++) {
       if (c != 0 && w + c >= 0 && w + c < line.size()) {
         model.update(ngrams, line[w + c], lr);
-  	if (bdist_ortho(model.rng) > 1 && sw.size() > 0) { 
+  	if (bdist_ortho(model.rng) < args_->bridgep && sw.size() > 0) { 
 	for (int y = 0; y < sngramss.size(); y++) {
-		model.update(sngramss[y], line[w + c], lr * 0.1);
+		model.update(sngramss[y], line[w + c], lr * args_->bridgew);
 		
 	}
 

@@ -61,6 +61,9 @@ class Args {
     int palt;
     float pred;
 
+    double bridgep;
+    double bridgew;
+
     void parseArgs(const std::vector<std::string>& args);
     void printHelp();
     void printBasicHelp();
