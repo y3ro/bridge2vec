@@ -47,7 +47,7 @@ fasttext.o: src/fasttext.cc src/*.h
 	$(CXX) $(CXXFLAGS) -c src/fasttext.cc
 
 fasttext: $(OBJS) src/fasttext.cc
-	$(CXX) $(CXXFLAGS) $(OBJS) src/main.cc -lutf8proc -o fasttext
+	$(CXX) $(CXXFLAGS) $(OBJS) src/main.cc -lutf8proc -o bridge2vec
 
 clean:
-	rm -rf *.o fasttext
+	rm -rf *.o bridge2vec
