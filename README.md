@@ -44,3 +44,7 @@ Please cite us if you use this code in your paper:
 ## License
 
 bridge2vec is BSD-licensed.
+
+## Funding acknowledgments
+
+Yerai Doval has been supported by the Spanish Ministry of Economy, Industry and Competitiveness (MINECO) through the ANSWER-ASAP project (TIN2017-85160-C2-2-R); by the Spanish State Secretariat for Research, Development and Innovation (which belongs to MINECO) and the European Social Fund (ESF) through a FPI fellowship (BES-2015-073768) associated with TELEPARES project (FFI2014-51978-C2-1-R); and by the Xunta de Galicia through TELGALICIA research network (ED431D 2017/12). The work of Jesús Vilares and Carlos Gómez-Rodríguez has also been funded by MINECO through the ANSWER-ASAP project (TIN2017-85160-C2-1-R in this case); and by Xunta de Galicia through a Group with Potential for Growth grant (ED431B 2017/01), a Competitive Reference Group grant (ED431C 2020/11), and a Remarkable Research Centre grant for the CITIC research centre (ED431G/01), the latter co-funded by EU with ERDF funding. Finally, Carlos Gómez-Rodríguez has also received funding from the European Research Council (ERC), under the European Union’s Horizon 2020 research and innovation programme (FASTPARSE, Grant No. 714150).
